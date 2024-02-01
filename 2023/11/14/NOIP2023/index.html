@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="pokefunc">
+  <meta name="msvalidate.01" content="pokefunc">
+  <meta name="baidu-site-verification" content="pokefunc">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Fira Code:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"pokefunc.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="NOIP2023 也许是我在 OI 世界留下的最后一笔。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NOIP2023">
+<meta property="og:url" content="https://pokefunc.github.io/2023/11/14/NOIP2023/index.html">
+<meta property="og:site_name" content="pokefunc&#39;s Blog">
+<meta property="og:description" content="NOIP2023 也许是我在 OI 世界留下的最后一笔。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/11/15/kSp6lKDIwnFTgQ5.png">
+<meta property="og:image" content="https://s2.loli.net/2023/11/15/WGLFjgmq2Vdwn6f.png">
+<meta property="og:image" content="https://s2.loli.net/2023/11/15/4I7fkjM5EFTaLom.png">
+<meta property="og:image" content="https://s2.loli.net/2023/11/16/DvnmwQFSIMWBH4y.png">
+<meta property="article:published_time" content="2023-11-14T08:03:46.000Z">
+<meta property="article:modified_time" content="2023-11-18T09:47:37.718Z">
+<meta property="article:author" content="pokefunc">
+<meta property="article:tag" content="pokefunc">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/11/15/kSp6lKDIwnFTgQ5.png">
+
+<link rel="canonical" href="https://pokefunc.github.io/2023/11/14/NOIP2023/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>NOIP2023 | pokefunc's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">pokefunc's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Live Fully</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-catalog">
+
+    <a href="/catalog/" rel="section"><i class="fa fa-book fa-fw"></i>目录</a>
+
+  </li>
+        <li class="menu-item menu-item-friend">
+
+    <a href="/friend/" rel="section"><i class="fa fa-users fa-fw"></i>友链</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pokefunc.github.io/2023/11/14/NOIP2023/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="pokefunc">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="pokefunc's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          NOIP2023
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-11-14 16:03:46" itemprop="dateCreated datePublished" datetime="2023-11-14T16:03:46+08:00">2023-11-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-11-18 17:47:37" itemprop="dateModified" datetime="2023-11-18T17:47:37+08:00">2023-11-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B8%B8%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">游记</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="noip2023">NOIP2023</h1>
+<p>也许是我在 OI 世界留下的最后一笔。</p>
+<span id="more"></span>
+<p>先说些闲话吧，算是退役记的一个引子（？）。</p>
+<p>这个月一直在怀疑自己，那个发生了太多事的下午仿佛就在昨日。苦涩的失败是对我这个不学无术混吃混喝等死混子的最好惩罚，失去了曾经拥有的一切也终于打破了幻想。</p>
+<p>也许我的 OI
+生涯不过一个星期就要终结，但是反而没有那么难过了。我本来就是菜鸡，刷题不够，努力不够，天赋不够，甚至信念也不够坚定，省队本来就没有我的份，这个时候及时止损也许是个更好的选项。CP
+乃至 Computer Science 不是只有
+OI，到了大学还能再见面，也没必要现在执着于 OI。</p>
+<p>CSP
+的题补了，感觉真的很弱智，也不知道为啥考场上就是差一口气，但是这已经是发生过的事情，思来想去不如不想。</p>
+<p>和家长谈过了，反正这一次还是竭尽全力再搏一把，干完这票无论结果如何，无论要不要再去打省选，都要学文化了，因为我是即使进了省队也必定进不了集训队的，其实就连省队都没我的份。[/嘲讽]</p>
+<p>一直想找和强者的差距，想搞明白自己死活想不出的题它们为啥能秒掉，总结下来除了码力八百年没练过以外无非就是自己拿到题不知道往哪想，只会有意无意地从经典问题出发或者套算法，对题目的分析能力约等于
+0，且思考深度也不够，于是能解决一个 Big Nerfed
+版的问题都谢天谢地了。[/嘲讽]</p>
+<p>要缩小这些差距没有什么捷径可走，只能刷题。可惜刷题不是短期能解决的问题，各路题单质量良莠不齐，再加上自身意志力不够坚定等一系列原因，尝试过的
+ARC
+板刷也只能在刷了十几场四十多道题后草草收尾，很多题也没时间去写代码。</p>
+<p>最近发现对许多事物都失去了兴趣，包括游戏（粥，穹，CS）也基本淡坑了，只想学
+OI 或者打引诱，只能说学 OI 学的。[/憨笑]</p>
+<p>但是也确实想不通为啥之前都不咋喜欢引诱现在喜欢上了（而且我玩的也菜），可能单纯压力太大了需要找一个发泄对象（指用力敲打手机）？[/嘲讽]</p>
+<p>所以学了这么久的 OI，可能唯一舍不下的是差 2 分上 Expert 的 CF
+账号吧。[/嘲讽]</p>
+<p>虽然还有翻盘的希望，而且如果翻了拿的就是今年 G2
+在科隆的剧本（最大小丑 <span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="2192" d="M56 237T56 250T70 270H835Q719 357 692 493Q692 494 692 496T691 499Q691 511 708 511H711Q720 511 723 510T729 506T732 497T735 481T743 456Q765 389 816 336T935 261Q944 258 944 250Q944 244 939 241T915 231T877 212Q836 186 806 152T761 85T740 35T732 4Q730 -6 727 -8T711 -11Q691 -11 691 0Q691 7 696 25Q728 151 835 230H70Q56 237 56 250Z"></path></g></g></g></svg></mjx-container></span>
+光速翻盘），但是我又没 Niko 或者 m0NESY
+的实力所以基本上认定为做梦。[/嘲讽] 不过梦还是要做的。</p>
+<p>无论如何，做好每一件微不足道的事，然后顺其自然，坦然迎接属于自己的结局。</p>
+<p>好了闲话说完了。我他妈啥时候变得这么多批话的。</p>
+<h2 id="day--3">Day -3</h2>
+<p>模拟赛是自己搬的，所以没打。</p>
+<p>为啥只有两个人切全场最简单题啊。</p>
+<p>有口胡哥见过搬的题导致查重查不出来又是怎么回事呢。</p>
+<p>做了 pjudge 的 NOIP round，感觉还是太难了，哈哈。</p>
+<p>下午体育课有老师在，所以溜回来在虚拟机玩本地 UOJ。</p>
+<p>晚上写了小作文之后又 vp 了 infoj 的模拟，结果 T1 狠狠挂 15 分，T2
+还不会，就算 T3 能拿 70+ 分总分也很难上 200，这下成智障了。</p>
+<h2 id="day--2">Day -2</h2>
+<p>今天没有模拟赛，于是上午自己去做了信友队的模拟赛。</p>
+<p>T1 秒了，T2 一直在想啥 <span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.439ex;" xmlns="http://www.w3.org/2000/svg" width="6.308ex" height="2.37ex" role="img" focusable="false" viewBox="0 -853.7 2788 1047.7"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D45D" d="M23 287Q24 290 25 295T30 317T40 348T55 381T75 411T101 433T134 442Q209 442 230 378L240 387Q302 442 358 442Q423 442 460 395T497 281Q497 173 421 82T249 -10Q227 -10 210 -4Q199 1 187 11T168 28L161 36Q160 35 139 -51T118 -138Q118 -144 126 -145T163 -148H188Q194 -155 194 -157T191 -175Q188 -187 185 -190T172 -194Q170 -194 161 -194T127 -193T65 -192Q-5 -192 -24 -194H-32Q-39 -187 -39 -183Q-37 -156 -26 -148H-6Q28 -147 33 -136Q36 -130 94 103T155 350Q156 355 156 364Q156 405 131 405Q109 405 94 377T71 316T59 280Q57 278 43 278H29Q23 284 23 287ZM178 102Q200 26 252 26Q282 26 310 49T356 107Q374 141 392 215T411 325V331Q411 405 350 405Q339 405 328 402T306 393T286 380T269 365T254 350T243 336T235 326L232 322Q232 321 229 308T218 264T204 212Q178 106 178 102Z"></path></g><g data-mml-node="mo" transform="translate(780.8,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="msup" transform="translate(1836.6,0)"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="mi" transform="translate(533,363) scale(0.707)"><path data-c="1D458" d="M121 647Q121 657 125 670T137 683Q138 683 209 688T282 694Q294 694 294 686Q294 679 244 477Q194 279 194 272Q213 282 223 291Q247 309 292 354T362 415Q402 442 438 442Q468 442 485 423T503 369Q503 344 496 327T477 302T456 291T438 288Q418 288 406 299T394 328Q394 353 410 369T442 390L458 393Q446 405 434 405H430Q398 402 367 380T294 316T228 255Q230 254 243 252T267 246T293 238T320 224T342 206T359 180T365 147Q365 130 360 106T354 66Q354 26 381 26Q429 26 459 145Q461 153 479 153H483Q499 153 499 144Q499 139 496 130Q455 -11 378 -11Q333 -11 305 15T277 90Q277 108 280 121T283 145Q283 167 269 183T234 206T200 217T182 220H180Q168 178 159 139T145 81T136 44T129 20T122 7T111 -2Q98 -11 83 -11Q66 -11 57 -1T48 16Q48 26 85 176T158 471L195 616Q196 629 188 632T149 637H144Q134 637 131 637T124 640T121 647Z"></path></g></g></g></g></svg></mjx-container></span>
+的做法能不能推广结果推了半个小时发现推广牛魔，甚至 subtask3
+都艹不过，楽麻了。T3
+写个阿卡伊题目背景是怎么会是呢不过反正我只会一个神秘 <span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="5.832ex" height="2.451ex" role="img" focusable="false" viewBox="0 -833.2 2577.6 1083.2"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"></path></g><g data-mml-node="mo" transform="translate(763,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="msup" transform="translate(1152,0)"><g data-mml-node="mi"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mn" transform="translate(633,363) scale(0.707)"><path data-c="33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z"></path></g></g><g data-mml-node="mo" transform="translate(2188.6,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g></g></svg></mjx-container></span> 楽麻了，T4
+更是重量寄。这下又很难上 200 了又成智障了。</p>
+<p>去看了题解结果发现 T2 做法和异或上的值没有任何关系，正解反而是从那个
+subtask3
+推出来的。这下有人成小丑了，楽麻了。不过这也启发有时候可以从部分分出发思考（？，有时候部分分也毫无意义
+QAQ）。</p>
+<p>T3
+原来有原题啊，我是说为啥感觉在哪见过。所以我当时为啥没把这个题研究透我是傻逼吗。最后拆贡献确实是理所当然了，但是前面那个贪心想不出来怎么办呢。T4
+确实被爆了那咋办嘛。</p>
+<p>吃完饭过后先做了些 CF *2000
+并被爆，然后去写一些考前注意事项以警示自己，写到一半困得不行就去睡了，然后起来之后也没有啥想继续写的欲望了。准备拖到晚上再写，先再复习点
+zhengruioi 的题。</p>
+<p>晚上吃完饭回来先去吹水了一会，看到了 251Sec 双指硬抗
+XO-X（迫真），然后就来做你谷 NOIP 模拟。</p>
+<p>T1 弱智题一眼秒了，然后发现 T2 T3 T4 都不会，这下只有 142pts
+了又成智障了，楽麻了。</p>
+<p>然后 251Sec 有高达 214pts，把 T3 切了，这下又被踩爆了。[/嘲讽]</p>
+<p>晚上回去和 syy 吹水说是 T2 是找规律题，楽麻了。</p>
+<p>一些图片：</p>
+<p><img src="https://s2.loli.net/2023/11/15/kSp6lKDIwnFTgQ5.png"></p>
+<p>啊？都已经这么久了吗 QAQ <del>这下多了一个舍不下的东西了</del></p>
+<p><img src="https://s2.loli.net/2023/11/15/WGLFjgmq2Vdwn6f.png"></p>
+<p>《自知之明》</p>
+<p><img src="https://s2.loli.net/2023/11/15/4I7fkjM5EFTaLom.png"></p>
+<p>还得是你说话好听。</p>
+<h2 id="day--1">Day -1</h2>
+<p>早晨起来去看了 T2 和 T3 的题解，T3 居然没观察到 <span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="1.357ex" height="1.025ex" role="img" focusable="false" viewBox="0 -442 600 453"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g></g></g></svg></mjx-container></span> 很大的时候只会取到最小值令人想紫砂。T2
+这种神秘找规律题还是 2 hard 4 me，楽麻了。</p>
+<p>然后就是模拟赛，T1 T2 都是弱智题，T4 是矩阵加速 DP，T3 知道是树形 DP
+但是不会于是打算打个暴力跑路，但是改过了没时间编译导致 CE 并
+-50pts，警钟长鸣。</p>
+<p>然后发现自己是全场唯一一个会 T4 但不会 T3 的智障，哈哈。去问了 T3
+发现确实非常智障，楽麻了。</p>
+<p>总结一下今天没有做到的 Flag：</p>
+<ul>
+<li>最后 15mins 还在写代码，超时 2mins。</li>
+<li>最后没有把所有程序测一遍。</li>
+</ul>
+<p>中午回来发现代码全部乱了，然后教练紧急修锅，哈哈。</p>
+<p>下午就是打板子，没干啥事。中间去 251Sec
+那边吹水去了，然后看它模拟退火一直冲不过去，楽麻了。</p>
+<p>平衡树（7 分钟）居然比线段树（13 分钟）打得快是怎么回事呢。</p>
+<p>KMP 打了 10 分钟又是怎么回事呢。</p>
+<p>晚上回来看到 zzp 在打马咯迪，然后打了一会又去打锁屏 pgr
+了，然后又去打马咯迪了，于是喵斯快跑启动！然后被爆了。</p>
+<p>然后就去看了 Sol1 和 gyh 总结的
+trick，记了一些，剩下的看不懂，楽。</p>
+<p>机房里的大家都在吹水并讨论退役事宜，一开始想的无所谓我也马上退役了所以稍微吹大了，但是突然又仔细想了想其实是菜鸡暮年壮心不已了，自己也并非心如死灰，只是被冷冰冰的现实和环境磨灭了热情和锐气，在思绪的某个角落又何尝不想再翻一把呢？于是这想法在脑海中愈演愈烈，但是也最终不敢多想，只怕当结果与幻想不符时自己无法承受，心如死灰反而是最好的状态。</p>
+<p>走之前又看了前几年的题并和 cyx 吹水。在回去的路上和 251Sec
+吹水并声称“老子的人生规划在今天之前就从来 TM 没这么清晰过”。</p>
+<p>回家之后就是和 syy 吹大水，试图在床上打阿卡伊发现打不了一点，打
+orzmic 然后卡在结算页面之前结算不了，自闭。然后看了粥发的新危机合约
+pv，歌很好听，然后就睡了。</p>
+<p>一些图片：</p>
+<p><img src="https://s2.loli.net/2023/11/16/DvnmwQFSIMWBH4y.png"></p>
+<p>亮点自寻。</p>
+<h2 id="day-0">Day 0</h2>
+<p>早上一边做往年 NOIP 的 T2 与 T3 一边打阿卡伊，2020T2
+算是比较友好因为暴力有高达 88 分所以就没再去打正解，2021T2 巨大 DP
+式子推出来了但是边界一直在错给人整红温了，2022T3 感觉难点还是在树形 DP
+啊，2021T3 难点是推式子。</p>
+<p>下午写了 ODT
+然后总结了一车骗分技巧与打阿卡伊，本来要走了体育老师叫我去体测，然后跑到
+200m 就胸口痛怎么回事呢。不过算是活着回来了。</p>
+<p>回家之后也没干啥，本来打算出去吃的但是我懒得再出去。所以点外卖。</p>
+<p>然后屁股肉启动！方向盘联动感觉还好，曲子好听，曲绘好看，谱面我不评价因为我打不来。[/嘲讽]</p>
+<p>吃了晚饭晃了一会继续看昨天没看完的 trick，期间本来打算和 syy
+打电话的，然后他在吃饭说待会要和 251Sec
+面基，说不定还会撞上我们教练，楽麻了。</p>
+<p>看完了 trick
+就是板刷记录和常规检查项这些了，看心情去浅玩了一下模拟费用流，又打了几个昨天打错了的板子。</p>
+<p>然后就洗洗睡了。</p>
+<h3 id="day-0.9">Day 0.9</h3>
+<p>睡觉之前又想了很多东西，要说压力必定是有的，只能采取尽可能降低对自己的期望的方式减小压力，但是在内心深处肯定不希望对自己的期望如此之低。</p>
+<p>以后路该怎么走？如果这次真的如同上次 NOIP
+考完写下的那样重蹈上一届的覆辙，那必定是安心学文化了；如果考得很好，那就是吃了一口续命药，有机会提升自己到省选再战；但是这之间的地带，又该如何处置呢？这个问题在脑海中萦绕许久，不可忽视却令人头疼。</p>
+<p>理论上来讲，如果明知道自己离省队的差别非常远，那再给自己三个月，真的就能反超一众高手吗？并不是不可能，可是如果真的要这么做，那必定需要找到最适合自己的学习方法，但是一旦误入歧途那就是致命的，因为已经没有成本试错了。听上一届翻车的学长们说，他们感觉自己停了很久的课自己却没有什么大的提升，是不是也和这个问题有关？抑或一个人的天赋确实就摆在那里，成为无法逾越的鸿沟？我不认为我已经步入天赋划定的禁区，但是天赋这种东西过于捉摸不定，也没有人能准确推测，这一切看起来又是一场豪赌，而是我已经赌怕了。</p>
+<p>不过这没法熄灭内心还是想为自己原初的那个梦再冲一次的火苗，希望能给人进步的动力却又何尝不是一条通往未知方向的小径，没有人知道尽头是美景还是陷阱，却还是令无数人着迷。万一自己已经很努力了，就是学习方法没找对呢？亦或是之前浪费了很多时间，此刻再亡羊补牢为时不晚呢？那些甜蜜的梦此刻看起来却又触手可及，但是又是不是上天开的另一个玩笑呢？</p>
+<p>思来想去最后没再乱想。明天还是要拿出十二分的努力和过去的自己道别，不管以后还会不会再见。</p>
+<blockquote>
+<p>So pick yourself up</p>
+<p>You can't change what's been</p>
+<p>You must go on and learn while you living</p>
+<p>And when see the signs saying hope is up ahead</p>
+<p>Then you're right on the track for a better end</p>
+</blockquote>
+<h2 id="day-1">Day 1</h2>
+<p>早晨比较早就醒了，然后吃了昨天买的汉堡就出发了。路上有点堵，在听《Gold
+Steps》和《On My Own》。</p>
+<p>到 qzgx 门口拍了照就进去了。路上和 zmj 吹水。</p>
+<p>进去之后才发现 251Sec 坐我旁边，楽麻了。并导致 hhk
+非常惊讶。然后发现水壶洒了，准考证（卒）。</p>
+<p>然后就是开题。T1 一眼就秒了（危），T2 感觉很奇怪，T3 读不懂题，T4
+读懂了但是毫无头猪，楽麻了。</p>
+<p>先去把 T1 秒了，然后发现自己写的 <span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.345ex" height="1.91ex" role="img" focusable="false" viewBox="0 -833.2 1036.6 844.2"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mi"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mn" transform="translate(633,363) scale(0.707)"><path data-c="33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z"></path></g></g></g></g></svg></mjx-container></span>，寄。急了
+10mins，然后搓出来一个正解，然后在边界上又死了，折腾到了 9:07。</p>
+<p>然后看 T2，推了 10mins 发现可以拆版本建树，于是就写写写，然后写了
+40mins 发现写了个什么答辩！火大！然后就是疯狂 RE。</p>
+<p>然后调了半个小时不 RE
+了，然后样例二寄！急急急。然后发现做法是假的。火大！！！！1</p>
+<p>然后就急急急，旁边的老哥一直在哼歌更急了。然后发现判环有问题，结果就要动代码结构了。火大！！！！1</p>
+<p>然后加了一个带权并查集，然后疯狂 RE 并寄寄寄寄！火大！！！1</p>
+<p>然后发现自己脑车把各种变量都混了。火大！！！1</p>
+<p>然后发现距离考试结束只有 35mins 了。火大！！！1</p>
+<p>然后突然就过样例了！然后激动的心颤抖的手！然后过了所有样例！</p>
+<p>然后只有 20mins 了！！写了个 T3 的 <span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.186ex;" xmlns="http://www.w3.org/2000/svg" width="5.506ex" height="1.692ex" role="img" focusable="false" viewBox="0 -666 2433.6 748"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(877.8,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mn" transform="translate(1933.6,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g></g></g></svg></mjx-container></span>
+和不可以总司令跑路了！！！火大！！！</p>
+<p>妈的怎么当整百人了！！！火大！！！！！</p>
+<p>然后就滚了。</p>
+<p>退役！！！！</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>pokefunc
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://pokefunc.github.io/2023/11/14/NOIP2023/" title="NOIP2023">https://pokefunc.github.io/2023/11/14/NOIP2023/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-ND</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/11/12/Iamsb/" rel="prev" title="常规检查项">
+      <i class="fa fa-chevron-left"></i> 常规检查项
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/11/15/last/" rel="next" title="考试前/考试中该干什么">
+      考试前/考试中该干什么 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#noip2023"><span class="nav-number">1.</span> <span class="nav-text">NOIP2023</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#day--3"><span class="nav-number">1.1.</span> <span class="nav-text">Day -3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#day--2"><span class="nav-number">1.2.</span> <span class="nav-text">Day -2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#day--1"><span class="nav-number">1.3.</span> <span class="nav-text">Day -1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#day-0"><span class="nav-number">1.4.</span> <span class="nav-text">Day 0</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#day-0.9"><span class="nav-number">1.4.1.</span> <span class="nav-text">Day 0.9</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#day-1"><span class="nav-number">1.5.</span> <span class="nav-text">Day 1</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="pokefunc"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">pokefunc</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">42</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://codeforces.com/profile/pokefunc" title="CodeForces → https:&#x2F;&#x2F;codeforces.com&#x2F;profile&#x2F;pokefunc" rel="noopener" target="_blank"><i class=" fa-fw"></i>CodeForces</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://atcoder.jp/user/pokefunc" title="AtCoder → https:&#x2F;&#x2F;atcoder.jp&#x2F;user&#x2F;pokefunc" rel="noopener" target="_blank"><i class=" fa-fw"></i>AtCoder</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/pokefunc" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;pokefunc" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:pokefunc@outlook.com" title="E-Mail → mailto:pokefunc@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2023 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">pokefunc</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'c1a15581110ebe6039a8',
+      clientSecret: 'a6350c650a59b59c75e1e45bb3fe10c92437691e',
+      repo        : 'plog_coms',
+      owner       : 'pokefunc',
+      admin       : ['pokefunc'],
+      id          : '7c299fc23081cd4f0a3bce0d2de291c5',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
