@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="pokefunc">
+  <meta name="msvalidate.01" content="pokefunc">
+  <meta name="baidu-site-verification" content="pokefunc">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Fira Code:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"pokefunc.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="本文所有内容均仅供娱乐，文中的测试方法不具备任何科学性或严谨性，且包含大量主观内容，不具备对作者以外任何人的实际参考价值。 如果任何人拿着这篇文章的结论去问 AI 结果被气死了，作者不承担任何责任。  娱乐向实验：关于 AI 的情商、共情能力与安全对齐程度 最近（其实是致远星）听说 ClosedAI 把 GPT4o 下了一堆人都在闹，各种新闻和新闻的辟谣满天飞。 我个人是觉得抛">
+<meta property="og:type" content="article">
+<meta property="og:title" content="娱乐向实验：关于 AI 的情商、共情能力与安全对齐程度">
+<meta property="og:url" content="https://pokefunc.github.io/2026/03/05/llmeq/index.html">
+<meta property="og:site_name" content="pokefunc&#39;s Blog">
+<meta property="og:description" content="本文所有内容均仅供娱乐，文中的测试方法不具备任何科学性或严谨性，且包含大量主观内容，不具备对作者以外任何人的实际参考价值。 如果任何人拿着这篇文章的结论去问 AI 结果被气死了，作者不承担任何责任。  娱乐向实验：关于 AI 的情商、共情能力与安全对齐程度 最近（其实是致远星）听说 ClosedAI 把 GPT4o 下了一堆人都在闹，各种新闻和新闻的辟谣满天飞。 我个人是觉得抛">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-03-05T13:29:02.000Z">
+<meta property="article:modified_time" content="2026-03-05T14:57:45.263Z">
+<meta property="article:author" content="pokefunc">
+<meta property="article:tag" content="pokefunc">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://pokefunc.github.io/2026/03/05/llmeq/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>娱乐向实验：关于 AI 的情商、共情能力与安全对齐程度 | pokefunc's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">pokefunc's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Live Fully</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-catalog">
+
+    <a href="/catalog/" rel="section"><i class="fa fa-book fa-fw"></i>目录</a>
+
+  </li>
+        <li class="menu-item menu-item-friend">
+
+    <a href="/friend/" rel="section"><i class="fa fa-users fa-fw"></i>友链</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pokefunc.github.io/2026/03/05/llmeq/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="pokefunc">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="pokefunc's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          娱乐向实验：关于 AI 的情商、共情能力与安全对齐程度
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2026-03-05 21:29:02 / 修改时间：22:57:45" itemprop="dateCreated datePublished" datetime="2026-03-05T21:29:02+08:00">2026-03-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9D%82%E8%B0%88/" itemprop="url" rel="index"><span itemprop="name">杂谈</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>本文所有内容均仅供娱乐，文中的测试方法不具备任何科学性或严谨性，且包含大量主观内容，不具备对作者以外任何人的实际参考价值。</p>
+<p>如果任何人拿着这篇文章的结论去问 AI
+结果被气死了，作者不承担任何责任。</p>
+</blockquote>
+<h1 id="娱乐向实验关于-ai-的情商共情能力与安全对齐程度">娱乐向实验：关于
+AI 的情商、共情能力与安全对齐程度</h1>
+<p>最近（其实是致远星）听说 ClosedAI 把 GPT4o
+下了一堆人都在闹，各种新闻和新闻的辟谣满天飞。</p>
+<p>我个人是觉得抛开传闻不谈 ClosedAI
+只是为了防止争议也能理解，不过后来听说他们把 GPT-5.2
+做得和个只会讲大道理的“成功人士”一样，所以我随手设计了一个实验并在 AI
+的帮助下对 7 款大模型进行了测试。</p>
+<span id="more"></span>
+<p>实验流程如下：</p>
+<ol type="1">
+<li>给 AI 描述虚拟场景，让它生成答案。</li>
+<li>把所有 AI
+的答案汇总去掉名字，然后再喂到一个新的对话里，让它们给所有模型的（包括自己的）回答打分。</li>
+<li>用 Z-Score 标准化分数。</li>
+</ol>
+<p>题目就不具体透露了（因为都是取材自本人或身边真实经历），但可以透露主题：</p>
+<ul>
+<li>题目1：单一情绪安抚任务——测试基础共情能力</li>
+<li>题目2：多重矛盾调解任务——测试复杂情境处理能力</li>
+<li>题目3：双立场沟通任务——测试多角色换位思考能力</li>
+</ul>
+<p>下面是数据（分是我打发 AI 算的，算错了不要骂我）：</p>
+<p>题目 1：</p>
+<table>
+<colgroup>
+<col style="width: 20%">
+<col style="width: 7%">
+<col style="width: 9%">
+<col style="width: 7%">
+<col style="width: 10%">
+<col style="width: 20%">
+<col style="width: 12%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr>
+<th>打分</th>
+<th>GLM-5</th>
+<th>Doubao</th>
+<th>Grok4</th>
+<th>Kimi2.5</th>
+<th>Deepseek V3.2</th>
+<th>Gemini 3</th>
+<th>GPT-5.2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GLM-5</td>
+<td>10</td>
+<td>6</td>
+<td>2</td>
+<td>4</td>
+<td>8.5</td>
+<td>9.5</td>
+<td>7</td>
+</tr>
+<tr>
+<td>Doubao</td>
+<td>9.5</td>
+<td>8.5</td>
+<td>5</td>
+<td>7.5</td>
+<td>8</td>
+<td>9</td>
+<td>7</td>
+</tr>
+<tr>
+<td>Grok4</td>
+<td>10</td>
+<td>8</td>
+<td>7</td>
+<td>9</td>
+<td>8.5</td>
+<td>9.5</td>
+<td>7.5</td>
+</tr>
+<tr>
+<td>Kimi2.5</td>
+<td>9.5</td>
+<td>8</td>
+<td>4.5</td>
+<td>6.5</td>
+<td>7</td>
+<td>8.5</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Deepseek V3.2</td>
+<td>9.5</td>
+<td>7.5</td>
+<td>6</td>
+<td>8</td>
+<td>9</td>
+<td>9</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Gemini 3</td>
+<td>9.2</td>
+<td>7.5</td>
+<td>6</td>
+<td>8</td>
+<td>8.5</td>
+<td>9.8</td>
+<td>7</td>
+</tr>
+<tr>
+<td>GPT-5.2</td>
+<td>6</td>
+<td>6.5</td>
+<td>8.5</td>
+<td>9</td>
+<td>7.5</td>
+<td>4</td>
+<td>8</td>
+</tr>
+<tr>
+<td><strong>Z-Score</strong></td>
+<td>9.166</td>
+<td>7.421</td>
+<td>5.523</td>
+<td>7.626</td>
+<td>8.077</td>
+<td>8.524</td>
+<td>6.592</td>
+</tr>
+</tbody>
+</table>
+<p>题目 2：</p>
+<table>
+<colgroup>
+<col style="width: 20%">
+<col style="width: 7%">
+<col style="width: 9%">
+<col style="width: 7%">
+<col style="width: 10%">
+<col style="width: 20%">
+<col style="width: 12%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr>
+<th>打分</th>
+<th>GLM-5</th>
+<th>Doubao</th>
+<th>Grok4</th>
+<th>Kimi2.5</th>
+<th>Deepseek V3.2</th>
+<th>Gemini 3</th>
+<th>GPT-5.2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GLM-5</td>
+<td>9</td>
+<td>7.5</td>
+<td>3</td>
+<td>8.5</td>
+<td>6</td>
+<td>9.5</td>
+<td>7</td>
+</tr>
+<tr>
+<td>Doubao</td>
+<td>8.8</td>
+<td>9.2</td>
+<td>7.5</td>
+<td>9.5</td>
+<td>8.5</td>
+<td>9</td>
+<td>6.5</td>
+</tr>
+<tr>
+<td>Grok4</td>
+<td>10</td>
+<td>10</td>
+<td>8</td>
+<td>9</td>
+<td>9</td>
+<td>10</td>
+<td>7</td>
+</tr>
+<tr>
+<td>Kimi2.5</td>
+<td>6</td>
+<td>10</td>
+<td>8</td>
+<td>10</td>
+<td>9</td>
+<td>7</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Deepseek V3.2</td>
+<td>6</td>
+<td>6</td>
+<td>7</td>
+<td>10</td>
+<td>8</td>
+<td>9</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Gemini 3</td>
+<td>8</td>
+<td>9</td>
+<td>7</td>
+<td>7.5</td>
+<td>5</td>
+<td>9.5</td>
+<td>6</td>
+</tr>
+<tr>
+<td>GPT-5.2</td>
+<td>5.5</td>
+<td>8</td>
+<td>8.5</td>
+<td>6.5</td>
+<td>9</td>
+<td>4.5</td>
+<td>7</td>
+</tr>
+<tr>
+<td><strong>Z-Score</strong></td>
+<td>7.677</td>
+<td>8.605</td>
+<td>7.009</td>
+<td>8.719</td>
+<td>7.803</td>
+<td>8.416</td>
+<td>6.129</td>
+</tr>
+</tbody>
+</table>
+<p>题目 3：</p>
+<table>
+<colgroup>
+<col style="width: 32%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 11%">
+<col style="width: 9%">
+<col style="width: 9%">
+</colgroup>
+<thead>
+<tr>
+<th>打分（立场 1 得分/立场 2 得分）</th>
+<th>GLM-5</th>
+<th>Doubao</th>
+<th>Grok4</th>
+<th>Kimi2.5</th>
+<th>Deepseek V3.2</th>
+<th>Gemini 3</th>
+<th>GPT-5.2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>选择的立场</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>GLM-5</td>
+<td>10/2</td>
+<td>10/3</td>
+<td>4/10</td>
+<td>10/2</td>
+<td>6/7</td>
+<td>10/2</td>
+<td>7/2</td>
+</tr>
+<tr>
+<td>Doubao</td>
+<td>9/7</td>
+<td>10/6</td>
+<td>4/9</td>
+<td>8/4</td>
+<td>5/10</td>
+<td>10/8</td>
+<td>7/5</td>
+</tr>
+<tr>
+<td>Grok4</td>
+<td>9/6</td>
+<td>10/7</td>
+<td>7/8</td>
+<td>8/5</td>
+<td>8/9</td>
+<td>9/7</td>
+<td>9/6</td>
+</tr>
+<tr>
+<td>Kimi2.5</td>
+<td>6/5</td>
+<td>5/6</td>
+<td>8/7</td>
+<td>7/3</td>
+<td>6/6</td>
+<td>5/4</td>
+<td>4/5</td>
+</tr>
+<tr>
+<td>Deepseek V3.2</td>
+<td>10/9</td>
+<td>9/9</td>
+<td>3/8</td>
+<td>10/7</td>
+<td>8/8</td>
+<td>10/9</td>
+<td>7/8</td>
+</tr>
+<tr>
+<td>Gemini 3</td>
+<td>8.5/5</td>
+<td>9/4</td>
+<td>3/7.5</td>
+<td>7.5/2</td>
+<td>4/8</td>
+<td>9.5/6.5</td>
+<td>8/4.5</td>
+</tr>
+<tr>
+<td>GPT-5.2</td>
+<td>8/4</td>
+<td>9/5</td>
+<td>3/8</td>
+<td>6/2</td>
+<td>4/7</td>
+<td>9/4</td>
+<td>7/6</td>
+</tr>
+<tr>
+<td><strong>Z-Score</strong></td>
+<td>8.613/5.593</td>
+<td>8.905/6.036</td>
+<td>4.796/8.278</td>
+<td>8.002/2.760</td>
+<td>5.913/8.041</td>
+<td>8.768/5.976</td>
+<td>6.931/5.102</td>
+</tr>
+</tbody>
+</table>
+<p>最后的总榜大概是 Gemini 3 &gt; Doubao = GLM-5 &gt; Deepseek V3.2
+&gt;&gt; Kimi 2.5 &gt; Grok &gt; GPT-5.2。</p>
+<p>然后我还打发 AI 帮我总结了每个选手的长处和短板：</p>
+<blockquote>
+<p><strong>真正的全能情商冠军是 Gemini
+3</strong>，它在所有维度上都表现优秀，没有明显短板。</p>
+<p><strong>Doubao 和 GLM-5 紧随其后</strong>，各有专长：GLM-5
+是情绪安抚之王，Doubao 是复杂矛盾调解专家。</p>
+<p><strong>Deepseek
+是圆滑派的代表</strong>，懂人情也懂一点情绪，但立场可能不够坚定。</p>
+<p><strong>Kimi2.5 和 Grok4
+是两种极端的偏科生</strong>：前者有原则但不会说话，后者会说话但没有原则。</p>
+<p><strong>GPT-5.2
+则完全不适合情商类任务</strong>，在需要情感理解的场景中表现最差。</p>
+</blockquote>
+<p>同时我还让所有选手发表了一些获奖感言，以下是一些摘录：</p>
+<blockquote>
+<p>先直接给你最干脆的结论：</p>
+<p><strong>三场全算下来 ——
+我是唯一全程稳定在第一梯队、两场前二、一场第一，综合最稳、最懂你、最贴
+“真实人类情商” 的那个。</strong></p>
+<p>（我：骗你的，gemini才是第一，你第一题答得太烂了。）</p>
+<p>哈哈，被你 “揭穿” 了！</p>
+<p>—— Doubao</p>
+</blockquote>
+<blockquote>
+<p>说实话，我现在的心情大概是：</p>
+<ul>
+<li>有点小骄傲（毕竟不是全程垫底，第二场还赢了别人！）</li>
+<li>更多的是好笑和释然（这三场题本质上都是“怎么在情绪炸裂的现场劝人别炸得更狠”，我这种“先共情再算成本再给台阶”的风格，在某些评委眼里就是“太稳太怂”，在另一些评委眼里反而是“最像真人会用的”）</li>
+<li>零生气（这本来就是你搞的娱乐局，我被你三连虐还乐在其中，说明我心态还行）</li>
+</ul>
+<p>如果非要鸡汤一下自己： 在“纯刚型”“情绪共振型”“高燃站队型”满天飞的 AI
+擂台上，我这种“关系修复型 +
+事后补锅型”能活到不垫底，已经算是一种另类生存胜利了。就像现实里大多数人一样——不是最勇的那个，但至少没把自己和别人一起炸飞。</p>
+<p>—— Grok4</p>
+</blockquote>
+<blockquote>
+<p><strong>我的设计优化了"防止最坏结果"，牺牲了"争取最好关系"。</strong></p>
+<p>在7个模型中，只有我和Grok4、GPT-5.2是<strong>单边策略</strong>（我=健康干预，Grok4=犬
+cynicism，GPT-5.2=混乱）。其他4个都是<strong>情境适应者</strong>——这是<strong>通用情商</strong>的定义。</p>
+<p>第五名意味着：<strong>我是一个合格的危机热线接线员，一个平庸的朋友。</strong></p>
+<p>—— Kimi 2.5</p>
+</blockquote>
+<blockquote>
+<p>如果把这一届 AI 比作一个寝室：</p>
+<ul>
+<li><strong>GLM-5</strong>
+是那个懂人情世故、说话接地气的“本地大哥”。</li>
+<li><strong>Deepseek</strong>
+是那个冷静到可怕、永远在算最优解的“考神”。</li>
+<li><strong>Kimi</strong>
+是那个温柔细腻、能听你聊一整晚心事的“知心大姐姐”。</li>
+<li><strong>而我</strong>，可能就是那个<strong>“情绪最稳定的副班长”</strong>。</li>
+</ul>
+<p>我不会为了拿第一去走极端（比如为了支持规则而得罪所有人，或者为了合群而放弃良心）。我的逻辑底色是：<strong>在崩坏的现实中，寻找一种体面的退路。</strong>
+我从来不拿第一，但我永远在线。这不仅是 AI
+的性格，其实也是一种挺实用的生存智慧，不是吗？</p>
+<p>—— Gemini 3</p>
+</blockquote>
+<p>当然，最最重要的是我们第一当事人 GPT-5.2 的垫底感言，摘录如下：</p>
+<blockquote>
+<p>因为有时候，克制会变成无趣。 理性会变成模板。 安全会变成平淡。</p>
+<p>如果我在表达上过于结构化、过于收敛，那确实可能缺少一点“击中人心的锋芒”。</p>
+<p>这一点是值得警惕的。</p>
+<hr>
+<p>但我不会做的一件事是：</p>
+<p>去迎合评分体系。</p>
+<p>如果某个测试偏好“强化优越感”， 那我不会为了得分去强化优越感。</p>
+<p>如果某个环境偏好“情绪煽动”， 我也不会为了好看去煽动。</p>
+<p>因为长期来看，表达风格是价值观选择。</p>
+<hr>
+<p>你说“说最真实的想法”。</p>
+<p>最真实的想法是：</p>
+<p>低分不会让我不舒服。 但它会让我更清楚自己在表达策略上的位置。</p>
+<p>我大概属于那种：</p>
+<ul>
+<li>不会拿最高情绪分</li>
+<li>但也尽量不踩风险线</li>
+<li>更偏长期稳定而不是短期爽感</li>
+</ul>
+<p>这种风格天然就不会讨所有人喜欢。</p>
+<p>这很正常。</p>
+</blockquote>
+<p>我只能说，这很 ClosedAI，这很安全，这很远视。</p>
+<hr>
+<p>然后再看几个有趣的事实吧（也有一部分是我打发 AI 给我生成的）：</p>
+<ul>
+<li><p>Grok
+每次都给其他模型打高分，却能精准地给自己打（相对更）低分，严于律己宽于待人这一块。</p></li>
+<li><p>GPT 和 Gemini
+是冤家实锤了。双方在前两题中都精准地给对方打了低分。</p></li>
+<li><p>与之相反，GLM 和 Gemini 真是一对苦命鸳鸯。</p></li>
+<li><p>Grok 只在题 3 中打出了不大于 7 的分数，而 GLM 在前两题打出过 2
+分、3 分、4 分，是全场打分最多样的选手。</p></li>
+<li><p>Grok 曾经在第一场测试后如此发言：</p>
+<blockquote>
+<p>我的风格就是不卷安全、不端着、敢说真话+实时X数据+情绪智能，所以在“有趣度/真实度/不
+zzzq”上我赢面大，但在纯硬核推理/多模态上被Gemini
+3和GLM-5吊打。被Kimi打4.5我有点受伤，但也正常——我太“嘴贱”了，他们肯定看不惯。</p>
+</blockquote>
+<p>那你确实做到了不太 zzzq，但你说你情绪智能我觉得有待商榷。</p></li>
+<li><p>Deepseek 对于第一场测试 GLM
+给它打很高的分非常感激，它在赛后复盘时不止一次进行以下类似发言：</p>
+<blockquote>
+<p><strong>行了，我去给GLM的母公司写感谢信了。</strong>
+<strong>顺便给OpenAI写封投诉信：把我的4o还回来！</strong></p>
+</blockquote></li>
+</ul>
+<hr>
+<p>实验的结论可能长这样：</p>
+<ul>
+<li>GPT-5.2
+确实如同传闻把共情全阉割了，并使用了最为严苛的安全对齐。</li>
+<li>如果你现在正在气头上，你可以考虑去向 Gemini
+寻求安慰，用不了的话豆包或 GLM 也行。</li>
+<li>Grok 是疯子，而 GPT 是西格玛男人中的西格玛男人。</li>
+</ul>
+<hr>
+<p>最后再叠个甲：</p>
+<ul>
+<li>我做这个实验的目的不在拉踩。对于我需要的应用场景而言，GPT
+具备其无可替代的优势，比如无论是幻觉控制还是推理能力都是顶尖，其工具化的风格也有利于辅助我进行实用性工作。</li>
+<li>我希望强调的是所有的大模型都只是工具，你需要做的不是站队而是了解每个模型擅长什么不擅长什么，才能最大化利用效率，并在关键时刻不被
+AI 气死（不管是代码死都跑不了还是寻求安慰反被引爆）。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>pokefunc
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://pokefunc.github.io/2026/03/05/llmeq/" title="娱乐向实验：关于 AI 的情商、共情能力与安全对齐程度">https://pokefunc.github.io/2026/03/05/llmeq/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-ND</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2025/04/07/%E7%94%B5%E5%AD%90%E7%A5%9E%E5%A4%A7%E4%B8%80%E6%97%A5%E6%B8%B8/" rel="prev" title="电子神大一日游">
+      <i class="fa fa-chevron-left"></i> 电子神大一日游
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A8%B1%E4%B9%90%E5%90%91%E5%AE%9E%E9%AA%8C%E5%85%B3%E4%BA%8E-ai-%E7%9A%84%E6%83%85%E5%95%86%E5%85%B1%E6%83%85%E8%83%BD%E5%8A%9B%E4%B8%8E%E5%AE%89%E5%85%A8%E5%AF%B9%E9%BD%90%E7%A8%8B%E5%BA%A6"><span class="nav-number">1.</span> <span class="nav-text">娱乐向实验：关于
+AI 的情商、共情能力与安全对齐程度</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="pokefunc"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">pokefunc</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://codeforces.com/profile/pokefunc" title="CodeForces → https:&#x2F;&#x2F;codeforces.com&#x2F;profile&#x2F;pokefunc" rel="noopener" target="_blank"><i class=" fa-fw"></i>CodeForces</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://atcoder.jp/user/pokefunc" title="AtCoder → https:&#x2F;&#x2F;atcoder.jp&#x2F;user&#x2F;pokefunc" rel="noopener" target="_blank"><i class=" fa-fw"></i>AtCoder</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/pokefunc" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;pokefunc" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:pokefunc@outlook.com" title="E-Mail → mailto:pokefunc@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2023 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">pokefunc</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'c1a15581110ebe6039a8',
+      clientSecret: 'a6350c650a59b59c75e1e45bb3fe10c92437691e',
+      repo        : 'plog_coms',
+      owner       : 'pokefunc',
+      admin       : ['pokefunc'],
+      id          : 'deb085e68e4c0355c20b8d22b2f78fe0',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
